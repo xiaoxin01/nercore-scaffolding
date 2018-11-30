@@ -18,9 +18,8 @@ namespace ConsoleWithConfiguration
                 .AddJsonFile($"appsettings.{environmentName}.json", true, true)
                 .Build();
 
-            var theKey = config.GetSection("TheKey").Value;
-
-            Console.WriteLine($"TheKey: {theKey}");
+            Console.WriteLine($"TheKey: {config.GetSection("TheKey").Value}");
+            Console.WriteLine($"xxxDbConnectionString: {config.GetConnectionString("xxxDbConnectionString")}");
         }
     }
 }

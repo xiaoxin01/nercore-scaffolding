@@ -37,3 +37,21 @@ appsettings.[Environment].json：
     <None Include="appsettings*.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 ```
+
+## 一些内置方法
+
+### 读取数据库连接字符串
+
+appsettings*.json中添加：
+
+```json
+    "ConnectionStrings": {
+        "xxxDbConnectionString": "Server=xx;Database=xx;User ID=xx;Password=xx;Persist Security Info=True"
+    }
+```
+
+代码读取：
+
+```c#
+  config.GetConnectionString("xxxDbConnectionString")
+```
