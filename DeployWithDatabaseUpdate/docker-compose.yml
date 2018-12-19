@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  deploywithdatabaseupdate:
+    image: ${DOCKER_REGISTRY}deploywithdatabaseupdate
+    build:
+      context: .
+      dockerfile: DeployWithDatabaseUpdate/Dockerfile
