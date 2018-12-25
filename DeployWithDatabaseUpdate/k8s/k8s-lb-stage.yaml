@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: your-project
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 50m
+spec:
+  rules:
+  - host: your-project.default.clusterip.xip.io
+    http:
+      paths:
+      - backend:
+          serviceName: your-project
+          servicePort: 80

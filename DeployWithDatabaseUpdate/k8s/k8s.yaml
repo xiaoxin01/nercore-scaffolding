@@ -1,0 +1,38 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  labels:
+    app: your-project
+  name: your-project
+spec:
+  selector:
+    matchLabels:
+      app: your-project
+  template:
+    metadata:
+      labels:
+        app: your-project
+    spec:
+      containers:
+      - image: your-private-registry-address/your-project:latest
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          valueFrom:
+            configMapKeyRef:
+              name: your-project
+              key: ASPNETCORE_ENVIRONMENT
+        imagePullPolicy: Always
+        name: your-project
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: your-project
+spec:
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  selector:
+    app: your-project

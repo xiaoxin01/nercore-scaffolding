@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: your-project-updatedb
+spec:
+  template:
+    spec:
+      containers:
+      - name: your-project-updatedb
+        image: your-private-registry-address/your-project:latest
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          valueFrom:
+            configMapKeyRef:
+              name: your-project
+              key: ASPNETCORE_ENVIRONMENT
+        - name: UPDATE_DB
+          value: "TRUE"
+      restartPolicy: Never
+  backoffLimit: 0
