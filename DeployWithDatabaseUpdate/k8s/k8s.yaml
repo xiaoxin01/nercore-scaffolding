@@ -23,6 +23,28 @@ spec:
               key: ASPNETCORE_ENVIRONMENT
         imagePullPolicy: Always
         name: your-project
+        volumeMounts:
+        - mountPath: /app/mount-path
+          name: data
+          subPath: your-project/mount-path
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: pvc-your-project
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-your-project
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: ""
+  volumeName: pv-your-project
 
 ---
 apiVersion: v1

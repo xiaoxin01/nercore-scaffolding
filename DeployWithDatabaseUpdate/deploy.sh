@@ -18,6 +18,9 @@ docker push your-private-registry-address/your-project:latest
 echo "deploy configmap"
 kubectl apply -f "./k8s/k8s-cm-$env.yaml"
 
+echo "deploy pv"
+kubectl apply -f "./k8s/k8s-pv-$env.yaml"
+
 echo "deploy ingress"
 kubectl apply -f "k8s/k8s-lb-$env.yaml"
 
